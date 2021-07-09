@@ -1,16 +1,14 @@
 import { yellow } from 'kleur';
 import { useEffect, useState } from 'react';
 import yargs from 'yargs';
-import './App.css';
-
 const NEMESES = [
-  {
-    'name': 'Joker','power': 'Evil laugh'
-  },
-  {
-    'name': 'Kryptonite','power': 'Sucks the life out of you'
-  }
+  {   'name': 'Joker','power': 'Evil laugh'
+},
+{
+  'name': 'Kryptonite','power': 'Sucks the life out of you'
+}
 ]
+import './App.css';
 
 const SUPERHEROES = [
   {
