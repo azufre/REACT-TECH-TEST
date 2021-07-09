@@ -8,7 +8,7 @@ Your job is to fix the following issues:
 
 2. Code styling is suboptimal
 
-3. Code does not follow clean code patterns
+3. Code does not follow clean code patterns (https://github.com/ryanmcdermott/clean-code-javascript)
 
 4. After compilation issue is fixed, the react app does not show all the superheroes and it constantly shows loading
 
