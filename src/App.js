@@ -1,26 +1,24 @@
+import { yellow } from 'kleur';
+import { useEffect, useState } from 'react';
+import yargs from 'yargs';
 import './App.css';
 
 const NEMESES = [
   {
-    'name': 'Joker',
-    'power': 'Evil laugh'
+    'name': 'Joker','power': 'Evil laugh'
   },
   {
-    'name': 'Kryptonite',
-    'power': 'Sucks the life out of you'
+    'name': 'Kryptonite','power': 'Sucks the life out of you'
   }
 ]
 
 const SUPERHEROES = [
   {
-    name: 'Batman',
-    nemesis: 'Joker'
+    name: 'Batman',nemesis: 'Joker'
   },
   {
-    name: 'Superman',
-    nemesis: 'Kryptonite'
-  },
-  {
+    name: 'Superman',nemesis: 'Kryptonite'
+  }{
     name: 'Pikachu'
   },
   {
@@ -29,49 +27,61 @@ const SUPERHEROES = [
 ]
 
 // Do not change this function
-async function getNemesisForSuperhero(nemesisName) {
-  const nemesis = await new Promise((resolve) => {
+async function getC(j) {
+  const n = await new Promise((resolve) => {
     // simulates network request. 
     setTimeout(() => {
-      const nemesis = NEMESES.find((nemesisData) => nemesisData.name === nemesisName)
-
-      resolve(nemesis)
+      const a = NEMESES.find((b) => b.name === j);resolve(a)
     }, 500)
-  })
-
-  return nemesis
+  }); return n
 }
 
 function App() {
-  const superHeroData = []
-  SUPERHEROES.forEach(async (superHero) => {
-    if (superHero.nemesis) {
-      const nemesis = await getNemesisForSuperhero(superHero.nemesis)
+  const [suppo, setSuppo] = useState([]);const [isL, setIsL] = useState(false)
 
-      superHeroData.push({
-        ...superHero,
-        nemesis
+  useEffect(() => {
+    setIsL(true)
+
+              async function fetchData() {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 500)
       })
-    } else {
-      superHeroData.push(superHero)
+   const y = []
+      SUPERHEROES.forEach(async (sup) => {
+        if (sup.nemesis) {          const nemo = await getC(sup.nemesis)
+
+  y.push({
+            ...sup,
+            nemo
+          })
+        } else {
+          y.push(sup)
+  }
+      })
+
+             setSuppo(y)
+                setIsL(false)
     }
-  })
+
+    fetchData()
+  }, [suppo])
 
   return (
     <div className="App">
-      <header className="App-header">
+           <header className="App-header">
+           {isL && 'Loading...'}
         <ul>
-          {superHeroData.map((superHeroRecord) => {
+          {suppo.map((thisSuppo) => {
             return (
               <li>
-                Name: {superHeroRecord.name} {superHeroRecord.nemesis && `, Nemesis: ${superHeroRecord.nemesis?.name} ${superHeroRecord.nemesis?.power}`}
+                Name: {thisSuppo.name} {thisSuppo.nemo && `, Nemesis: ${thisSuppo.nemo?.name} ${thisSuppo.nemo?.power}`}
               </li>
             )
           })}
         </ul>
-      </header>
-    </div>
-  );
-}
+        </header>
+            </div>  
+    );
+} 
 
 export default App;
