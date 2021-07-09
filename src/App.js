@@ -24,7 +24,8 @@ const SUPERHEROES = [
   }
 ]
 
-// Do not change this function
+// Do not change the logic of this function (it must remain async and wait 500 ms)
+// Please do improve the function + variable names though :)
 async function getC(j) {
   const n = await new Promise((resolve) => {
     // simulates network request. 
