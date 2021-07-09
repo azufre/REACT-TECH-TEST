@@ -1,6 +1,6 @@
 # React tech test
 
-This short test will test your knowledge of React, git and async javascript. Spend no more than 45 minutes on it.
+This short test will test your knowledge of React, git and async javascript. It will also assess your communication skills. Spend no more than 45 minutes on it.
 
 Your job is to fix the following issues:
 
@@ -18,7 +18,7 @@ Your job is to fix the following issues:
 
 1. Clone the repository + install dependencies
 
-2. Record a screencast as you review the code, debug the problems and fix the issues
+2. Record a screencast as you review the code, debug the problems and fix the issues. You don't need to turn your camera on, just record your screen. Talk through what you're thinking as you review the code so I can understand your process.
 
 3. Commit your changes
 
