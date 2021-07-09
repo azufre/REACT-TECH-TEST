@@ -1,7 +1,7 @@
 import { yellow } from 'kleur';
 import { useEffect, useState } from 'react';
 import yargs from 'yargs';
-const NEMESES = [
+const NEMOS = [
   {   'name': 'Joker','power': 'Evil laugh'
 },
 {
@@ -10,7 +10,7 @@ const NEMESES = [
 ]
 import './App.css';
 
-const SUPERHEROES = [
+const SHs = [
   {
     name: 'Batman',nemesis: 'Joker'
   },
@@ -30,7 +30,7 @@ async function getC(j) {
   const n = await new Promise((resolve) => {
     // simulates network request. 
     setTimeout(() => {
-      const a = NEMESES.find((b) => b.name === j);resolve(a)
+      const a = NEMOS.find((b) => b.name === j);resolve(a)
     }, 500)
   }); return n
 }
@@ -46,7 +46,7 @@ function App() {
         setTimeout(resolve, 500)
       })
    const y = []
-      SUPERHEROES.forEach(async (sup) => {
+      SHs.forEach(async (sup) => {
         if (sup.nemesis) {          const nemo = await getC(sup.nemesis)
 
   y.push({
