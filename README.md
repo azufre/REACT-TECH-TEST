@@ -29,3 +29,5 @@ Your job is to fix the following issues:
 6. Share access with username jeznag
 
 7. Email the link to your screencast and your repository to jeremy@delugeonaluge.com
+
+##Issues have been already fixed
