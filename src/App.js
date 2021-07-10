@@ -1,85 +1,82 @@
-import { yellow } from 'kleur';
 import { useEffect, useState } from 'react';
-import yargs from 'yargs';
-const NEMOS = [
-  {   'name': 'Joker','power': 'Evil laugh'
-},
-{
-  'name': 'Kryptonite','power': 'Sucks the life out of you'
-}
-]
 import './App.css';
 
-const SHs = [
-  {
-    name: 'Batman',nemesis: 'Joker'
-  },
-  {
-    name: 'Superman',nemesis: 'Kryptonite'
-  }{
-    name: 'Pikachu'
-  },
-  {
-    name: 'Captain Planet'
-  }
+const Enemies = [
+  {'name':'Joker', 'power':'Evil laugh'},
+  {'name':'Kryptonite', 'power':'Sucks the life out of you'},
+]
+
+const SuperHeros = [
+  {'name':'Batman', 'nemesis':'Joker'},
+  {'name':'Superman', 'nemesis':'Kryptonite'},
+  {'name':'Pikachu'},
+  {'name': 'Captain Planet'},
 ]
 
 // Do not change the logic of this function (it must remain async and wait 500 ms)
 // Please do improve the function + variable names though :)
-async function getC(j) {
-  const n = await new Promise((resolve) => {
+async function getCurrentEnemie(nemesis) {
+  return await new Promise((resolve) => {
     // simulates network request. 
     setTimeout(() => {
-      const a = NEMOS.find((b) => b.name === j);resolve(a)
+      const EnemieFound = Enemies.find((enemie) => enemie.name === nemesis);
+      resolve(EnemieFound)
     }, 500)
-  }); return n
+  }); 
 }
 
 function App() {
-  const [suppo, setSuppo] = useState([]);const [isL, setIsL] = useState(false)
+
+  const [superHeros, setSuperHeros] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
+
+  const IsLoadingTrue = true;
+  const IsLoadingFalse = false;
 
   useEffect(() => {
-    setIsL(true)
 
-              async function fetchData() {
-      await new Promise((resolve) => {
-        setTimeout(resolve, 500)
-      })
-   const y = []
-      SHs.forEach(async (sup) => {
-        if (sup.nemesis) {          const nemo = await getC(sup.nemesis)
+    setIsLoading(IsLoadingTrue);
 
-  y.push({
-            ...sup,
-            nemo
-          })
-        } else {
-          y.push(sup)
-  }
-      })
+    async function fetchData() {
 
-             setSuppo(y)
-                setIsL(false)
+      let data = await Promise.all(SuperHeros.map(async (superHero) => {
+    
+        if (superHero.nemesis) {
+    
+          const enemie = await getCurrentEnemie(superHero.nemesis)
+          
+          return {...superHero, enemie};
+    
+        } 
+        
+        return superHero;
+    
+      }));
+      
+      setSuperHeros(data);
+      setIsLoading(IsLoadingFalse);
+
     }
 
-    fetchData()
-  }, [suppo])
+    fetchData();
+
+  }, []);
 
   return (
     <div className="App">
-           <header className="App-header">
-           {isL && 'Loading...'}
+        <header className="App-header">
+           {isLoading && 'Loading...'}
         <ul>
-          {suppo.map((thisSuppo) => {
+          {superHeros.map((CurrentSuperHero) => {
             return (
-              <li>
-                Name: {thisSuppo.name} {thisSuppo.nemo && `, Nemesis: ${thisSuppo.nemo?.name} ${thisSuppo.nemo?.power}`}
+              <li key={CurrentSuperHero['name']}>
+                Name: {CurrentSuperHero.name} {CurrentSuperHero.enemie && `, Nemesis: ${CurrentSuperHero.nemo?.name} ${CurrentSuperHero.enemie?.power}`}
               </li>
             )
           })}
         </ul>
         </header>
-            </div>  
+    </div>  
     );
 } 
 
